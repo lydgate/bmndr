@@ -1,12 +1,13 @@
 bmndr
 =====
 
-Simple python CLI interface to beeminder.com
+Simple python CLI interface to [Beeminder](https://www.beeminder.com/). I live in the command-line so this script makes it really simple for me to check my goals and enter data without waiting for a webpage to load. This is my version of laziness.
 
 Requirements
 ============
 
 * Python 3. It won't run on Python 2 currently due to capitalization differences (ConfigParser) and urllib differences.
+* A Beeminder account. Get one, you won't regret it.
 
 Usage
 =====
@@ -52,10 +53,22 @@ Enter a datapoint by adding further arguments after the slug. The format is the 
      'updated_at': 1374062062,
      'value': 1.0}
 
+Ideas
+=====
+
+You could put the default output into [Conky](http://conky.sourceforge.net/) or another tool that can display text.
+
+If you use [Taskwarrior](http://taskwarrior.org/projects/show/taskwarrior), you can declare a [backlog](http://markforster.squarespace.com/blog/2009/8/31/backlog-method.html). First create a weight loss goal with the current number of your tasks in. Then put something like this into cron:
+
+    0 9 * * * bmndr backlog $(task status:pending entry.before:2013-07-17 count) automatic import from taskwarrior
+
+This will upload your daily total tasks created __before__ 2013-07-17 to Beeminder. The reason I set a date was so that I could make progress on old tasks without being penalized for creating new tasks.
+
 Todo
 ====
 
-* Make the number of goals displayed by default configurable.
-* Possibly make sorting configurable. It doesn't currently match Beeminder's own sorting.
-* Possibly allow monitoring other people's public graphs
-* Nicer formatting of JSON that comes back when you submit data.
+* More configuration.
+  * Make the number of goals displayed by default configurable.
+  * Possibly make sorting configurable. It doesn't currently match Beeminder's own sorting.
+* Possibly allow monitoring other people's public graphs, if the API lets you do this.
+* Nicer formatting of the default list, and of the JSON that comes back when you submit data.
