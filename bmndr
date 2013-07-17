@@ -1,0 +1,68 @@
+#!/usr/bin/python
+import configparser
+import os
+from pprint import pprint
+from textwrap import wrap
+from time import time
+from json import loads
+from urllib.parse import urlencode
+from urllib.request import urlopen
+from sys import argv, exit
+
+config_path = os.path.join(os.path.expanduser('~'),'.bmndrrc')
+
+Config = configparser.ConfigParser()
+Config.read(config_path)
+
+def ConfigSectionMap(section):
+    dict1 = {}
+    options = Config.options(section)
+    for option in options:
+        try:
+            dict1[option] = Config.get(section, option)
+            if dict1[option] == -1:
+                DebugPrint("skip: %s" % option)
+        except:
+            print("exception on %s!" % option)
+            dict1[option] = None
+    return dict1
+
+try:
+    auth_token = ConfigSectionMap('account')['auth_token']
+except (KeyError, configparser.NoSectionError):
+    print('Error: Missing or malformed configuration file.\n')
+    print('Please go to https://www.beeminder.com/api/v1/auth_token.json')
+    print('Then create a ~/.bmndrrc file like this:\n')
+
+    print('[account]')
+    print('auth_token: <your auth_token>')
+    exit(1)
+
+if len(argv) == 1:
+    data = loads(urlopen('https://www.beeminder.com/api/v1/users/me/goals.json?auth_token=%s' % auth_token).read().decode('utf-8'))
+
+    parsed = sorted(data,key=lambda data:abs(data['lane']))
+
+    for i in parsed[0:5]:
+         print('::: %s :::\t(%s)\n' % (i['slug'],i['title']),i['headsum'],'\n','\n'.join(wrap(i['graphsum'])),'\n')
+elif len(argv) == 2:
+    goal = argv[1]
+    data = loads(urlopen('https://www.beeminder.com/api/v1/users/me/goals/%s.json?auth_token=%s&datapoints=true' % (goal,auth_token)).read().decode('utf-8'))
+    print('::: Progress on %s :::\n' % data['title'],data['headsum'],'\n','\n'.join(wrap(data['graphsum'])),'\n',data['graph_url'])
+    for i in data['datapoints'][-10:]:
+        print(i['canonical'])
+else:
+    goal = argv[1]
+    
+    post = dict()
+    post['auth_token'] = auth_token
+    post['timestamp'] = round(time())
+    post['value'] = argv[2]
+    if len(argv)>2:
+        post['comment'] = ' '.join(argv[3:])
+
+    params = urlencode(post)
+    params = params.encode('utf-8')
+
+    data = loads(urlopen('https://www.beeminder.com/api/v1/users/me/goals/%s/datapoints.json' % goal, params).read().decode('utf-8'))
+    pprint(data)
