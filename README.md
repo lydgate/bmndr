@@ -16,7 +16,7 @@ Usage is simple. First, log into Beeminder, [get an auth_token](https://www.beem
     [account]
     auth_token: <auth_token>
 
-Running the command with no arguments will show you five goals in order of how close you are to the wrong lane:
+Running the command with no arguments will show you five goals in order of how close you are to the wrong lane. Here's an example for [my Beeminder goal](https://www.beeminder.com/bkam/oto) of watching the films in the book [_1001 Films You Must See Before You Die_](http://msls.net/films/):
 
     $ bmndr
     ::: oto :::	(1001 Films)
@@ -30,15 +30,18 @@ Get more data on a specific goal by using the slug as an argument. It gives you 
 
     $ bmndr oto
     ::: Progress on 1001 Films :::
+
      Way above the yellow brick road with 14 days of safety buffer 
      618 on 2013.07.17 (3 datapoints in 2 days) targeting 1001 on
     2020.12.01 (2694 more days). Yellow Brick Rd = +1 / week. 
-     http://brain.beeminder.com/nonce/bkam+oto+51e59450cc1931715100000c.png
+
+    http://brain.beeminder.com/nonce/bkam+oto+51e59450cc1931715100000c.png
+
     16 616 "initial datapoint of 616 on the 16th"
     16 1 "Nanook of the North"
     17 1 "Onibaba"
 
-Enter a datapoint by adding further arguments after the slug. The format is the same as beeminder the Beeminder emails except that quotes aren't necessary:
+    Enter a datapoint by adding further arguments after the slug. The format is the same as beeminder the Beeminder emails except that quotes aren't necessary. Gives you back the server's response, pretty-printed.
 
     $ bmndr oto 1 Out of Africa
     {'canonical': '17 1 "Out of Africa"',
@@ -53,6 +56,7 @@ Todo
 ====
 
 * Make the number of goals displayed by default configurable.
+* Possibly make sorting configurable. It doesn't currently match Beeminder's own sorting.
 * Possibly allow monitoring other people's public graphs
 * Nicer formatting of JSON that comes back when you submit data.
 * Automatically 
