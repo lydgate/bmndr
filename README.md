@@ -41,7 +41,7 @@ Get more data on a specific goal by using the slug as an argument. It gives you 
     16 1 "Nanook of the North"
     17 1 "Onibaba"
 
-    Enter a datapoint by adding further arguments after the slug. The format is the same as beeminder the Beeminder emails except that quotes aren't necessary. Gives you back the server's response, pretty-printed.
+Enter a datapoint by adding further arguments after the slug. The format is the same as beeminder the Beeminder emails except that quotes aren't necessary. Gives you back the server's response, pretty-printed.
 
     $ bmndr oto 1 Out of Africa
     {'canonical': '17 1 "Out of Africa"',
@@ -59,4 +59,3 @@ Todo
 * Possibly make sorting configurable. It doesn't currently match Beeminder's own sorting.
 * Possibly allow monitoring other people's public graphs
 * Nicer formatting of JSON that comes back when you submit data.
-* Automatically 
