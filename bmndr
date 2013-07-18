@@ -43,7 +43,7 @@ if len(argv) == 1:
 
     parsed = sorted(data,key=lambda data:abs(data['lane']))
 
-    for i in parsed[0:5]:
+    for i in parsed[0:10]:
          print('::: %s :::\t(%s)\n' % (i['slug'],i['title']),i['headsum'],'\n','\n'.join(wrap(i['graphsum'])),'\n')
 elif len(argv) == 2:
     goal = argv[1]

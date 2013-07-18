@@ -17,7 +17,7 @@ Usage is simple. First, log into Beeminder, [get an auth_token](https://www.beem
     [account]
     auth_token: <auth_token>
 
-Running the command with no arguments will show you five goals in order of how close you are to the wrong lane. Here's an example for [my Beeminder goal](https://www.beeminder.com/bkam/oto) of watching the films in the book [_1001 Films You Must See Before You Die_](http://msls.net/films/):
+Running the command with no arguments will show you ten goals in order of how close you are to the wrong lane. Here's an example for [my Beeminder goal](https://www.beeminder.com/bkam/oto) of watching the films in the book [_1001 Films You Must See Before You Die_](http://msls.net/films/):
 
     $ bmndr
     ::: oto :::	(1001 Films)
