@@ -31,9 +31,9 @@ def ConfigSectionMap(section):
 def time_to_days(dt):
     days = dt.days
     if days == 1:
-        return '1 safe day'
+        return '1 day'
     else:
-        return '%s safe days' % days
+        return '%s days' % days
 
 try:
     auth_token = ConfigSectionMap('account')['auth_token']
@@ -61,7 +61,7 @@ if len(argv) == 1:
         output.append(line)
     col_width = max([len(i[0]) for i in output]) + 1
     for row in output:
-        print(row[0].ljust(col_width),row[1].ljust(14),row[2])
+        print(row[0].ljust(col_width),row[1].ljust(9),row[2])
         
         #print("".join(word.ljust(col_width) for word in row))
 
