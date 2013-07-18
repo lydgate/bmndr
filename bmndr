@@ -3,6 +3,7 @@ import configparser
 import os
 from pprint import pprint
 from textwrap import wrap
+from datetime import datetime
 from time import time
 from json import loads
 from urllib.parse import urlencode
@@ -27,6 +28,13 @@ def ConfigSectionMap(section):
             dict1[option] = None
     return dict1
 
+def time_to_days(dt):
+    days = dt.days
+    if days == 1:
+        return '1 safe day'
+    else:
+        return '%s safe days' % days
+
 try:
     auth_token = ConfigSectionMap('account')['auth_token']
 except (KeyError, configparser.NoSectionError):
@@ -38,19 +46,34 @@ except (KeyError, configparser.NoSectionError):
     print('auth_token: <your auth_token>')
     exit(1)
 
+
+# output for running "bmndr"
 if len(argv) == 1:
     data = loads(urlopen('https://www.beeminder.com/api/v1/users/me/goals.json?auth_token=%s' % auth_token).read().decode('utf-8'))
 
-    parsed = sorted(data,key=lambda data:abs(data['lane']))
+    parsed = sorted(data,key=lambda data:abs(data['losedate']))
 
-    for i in parsed[0:10]:
-         print('::: %s :::\t(%s)\n' % (i['slug'],i['title']),i['headsum'],'\n','\n'.join(wrap(i['graphsum'])),'\n')
+    output = []
+    for i in parsed:
+        timeleft = datetime.fromtimestamp(int(i['losedate'])) - datetime.now()
+        days = time_to_days(timeleft)
+        line = [i['slug'],days,i['headsum']]
+        output.append(line)
+    col_width = max([len(i[0]) for i in output]) + 1
+    for row in output:
+        print(row[0].ljust(col_width),row[1].ljust(14),row[2])
+        
+        #print("".join(word.ljust(col_width) for word in row))
+
+# output for running "bmndr <goal>"
 elif len(argv) == 2:
     goal = argv[1]
     data = loads(urlopen('https://www.beeminder.com/api/v1/users/me/goals/%s.json?auth_token=%s&datapoints=true' % (goal,auth_token)).read().decode('utf-8'))
     print('::: Progress on %s :::\n\n' % data['title'],data['headsum'],'\n','\n'.join(wrap(data['graphsum'])),'\n\n%s\n' % data['graph_url'])
     for i in data['datapoints'][-10:]:
         print(i['canonical'])
+
+# output for running "bmndr <goal> <data> <comment>"
 else:
     goal = argv[1]
     

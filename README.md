@@ -17,14 +17,11 @@ Usage is simple. First, log into Beeminder, [get an auth_token](https://www.beem
     [account]
     auth_token: <auth_token>
 
-Running the command with no arguments will show you ten goals in order of how close you are to the wrong lane. Here's an example for [my Beeminder goal](https://www.beeminder.com/bkam/oto) of watching the films in the book [_1001 Films You Must See Before You Die_](http://msls.net/films/):
+Running the command with no arguments will show you all of your goals in order of how close you are to losing. Here's an example for [my Beeminder goal](https://www.beeminder.com/bkam/oto) of watching the films in the book [_1001 Films You Must See Before You Die_](http://msls.net/films/):
 
     $ bmndr
-    ::: oto :::	(1001 Films)
-     Way above the yellow brick road with 14 days of safety buffer 
-     618 on 2013.07.17 (3 datapoints in 2 days) targeting 1001 on
-    2020.12.01 (2694 more days). Yellow Brick Rd = +1 / week. 
-
+    ...
+    oto        14 safe days   Way above the yellow brick road with 14 days of safety buffer
     ...
 
 Get more data on a specific goal by using the slug as an argument. It gives you the headline summary as well as a summary of the graph, plus the URL to the graph, and the last ten datapoints entered.
