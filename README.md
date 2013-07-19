@@ -8,8 +8,8 @@ It is very simple but I'm a hobbyist programmer so there may be bugs. It works f
 Requirements
 ============
 
-* Python 3. It won't run on Python 2 currently due to capitalization differences (ConfigParser) and urllib differences.
-* A Beeminder account. Get one, you won't regret it.
+* A [Beeminder account](https://www.beeminder.com/users/sign_up) account. Get one, they are free and you won't regret it.
+* [Python 3](http://python.org/). It won't run on Python 2 currently due to capitalization differences (ConfigParser) and urllib differences.
 
 Usage
 =====
@@ -41,7 +41,7 @@ Get more data on a specific goal by using the slug as an argument. It gives you 
     16 1 "Nanook of the North"
     17 1 "Onibaba"
 
-Enter a datapoint by adding further arguments after the slug. The format is the same as beeminder the Beeminder emails except that quotes aren't necessary. Gives you back the server's response, pretty-printed.
+Enter a datapoint by adding further arguments after the slug. The format is the same as beeminder the Beeminder emails except that quotes aren't necessary. The script prints the server's response, pretty-printed.
 
     $ bmndr oto 1 Out of Africa
     {'canonical': '17 1 "Out of Africa"',
@@ -55,7 +55,7 @@ Enter a datapoint by adding further arguments after the slug. The format is the 
 Ideas
 =====
 
-You could put the default output into [Conky](http://conky.sourceforge.net/) or another tool that can display text.
+You could put the default output into [Conky](http://conky.sourceforge.net/) or another tool that can display text. I do this to have an at a glance view of my goals on my desktop.
 
 If you use [Taskwarrior](http://taskwarrior.org/projects/show/taskwarrior), you can declare a [backlog](http://markforster.squarespace.com/blog/2009/8/31/backlog-method.html). First create a weight loss goal with the current number of your tasks in. Then put something like this into cron:
 
@@ -70,7 +70,8 @@ Todo
   * Make the number of goals displayed by default configurable.
   * Possibly make sorting configurable. It doesn't currently match Beeminder's own sorting.
 * Possibly allow monitoring other people's public graphs, if the API lets you do this.
-* Nicer formatting of the default list, and of the JSON that comes back when you submit data.
-* Silent switch for scripts when posting data?
-* Verbose switch for summary?
-* Default to only frontburner on the summary but make it configurable
+* Nicer formatting of the JSON that comes back when you submit data.
+* Silent switch for scripts when posting data
+* Verbose switch for summary
+* Default to only frontburner goals on the summary but make it configurable
+* Switch to pop open the goal graph in an image viewer
