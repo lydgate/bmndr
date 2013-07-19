@@ -1,7 +1,9 @@
 bmndr
 =====
 
-Simple python CLI interface to [Beeminder](https://www.beeminder.com/). I live in the command-line so this script makes it really simple for me to check my goals and enter data without waiting for a webpage to load. This is my version of laziness.
+Simple python CLI interface to [Beeminder](https://www.beeminder.com/) which uses the [Beeminder API](https://www.beeminder.com/api). I live in the command-line so this script makes it really simple for me to check my goals and enter data without waiting for a webpage to load. This is my version of laziness.
+
+It is very simple but I'm a hobbyist programmer so there may be bugs. It works for me and I use it every day. I'd be really happy if you use it so [let me know](https://twitter.com/bryankam) if it's useful for you or if I can improve it!
 
 Requirements
 ============
