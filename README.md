@@ -9,7 +9,6 @@ Requirements
 ============
 
 * A [Beeminder account](https://www.beeminder.com/users/sign_up) account. Get one, they are free and you won't regret it.
-* [Python 3](http://python.org/). It won't run on Python 2 currently due to capitalization differences (ConfigParser) and urllib differences.
 
 Usage
 =====
