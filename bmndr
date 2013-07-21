@@ -1,13 +1,20 @@
 #!/usr/bin/python
-import configparser
+try:
+    import configparser
+except ImportError:
+    import ConfigParser as configparser
+
 import os
 from pprint import pprint
 from textwrap import wrap
 from datetime import datetime
 from time import time
 from json import loads
-from urllib.parse import urlencode
-from urllib.request import urlopen
+try:
+    from urllib.parse import urlencode
+    from urllib.request import urlopen
+except ImportError:
+    from urllib import urlencode,urlopen
 from sys import argv, exit
 
 config_path = os.path.join(os.path.expanduser('~'),'.bmndrrc')
