@@ -68,9 +68,10 @@ if len(argv) == 1:
         output.append(line)
     col_width = max([len(i[0]) for i in output]) + 1
     for row in output:
-        print(''.join((row[0].ljust(col_width),row[1].ljust(9),row[2])))
-        
-        #print("".join(word.ljust(col_width) for word in row))
+        try:
+            print(''.join((row[0].ljust(col_width),row[1].ljust(9),row[2])))
+        except TypeError:
+            pass
 
 # output for running "bmndr <goal>"
 elif len(argv) == 2:
