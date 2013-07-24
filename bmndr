@@ -53,10 +53,14 @@ except (KeyError, configparser.NoSectionError):
     print('auth_token: <your auth_token>')
     exit(1)
 
+try:
+    burner = ConfigSectionMap('account')['filter']
+except (KeyError, configparser.NoSectionError):
+    burner = 'frontburner'
 
 # output for running "bmndr"
 if len(argv) == 1:
-    data = loads(urlopen('https://www.beeminder.com/api/v1/users/me/goals.json?auth_token=%s' % auth_token).read().decode('utf-8'))
+    data = loads(urlopen('https://www.beeminder.com/api/v1/users/me/goals.json?auth_token=%s&filter=%s' % (auth_token,burner)).read().decode('utf-8'))
 
     parsed = sorted(data,key=lambda data:abs(data['losedate']))
 

@@ -51,6 +51,13 @@ Enter a datapoint by adding further arguments after the slug. The format is the 
      'updated_at': 1374062062,
      'value': 1.0}
 
+Configuration
+=============
+
+Currently there are only a few options. `auth_token` is required as described above.
+
+`filter` can be set to one of `frontburner` (default), `all`, or `backburner`. Definiton of backburner [here](http://blog.beeminder.com/glossary/#b).
+
 Ideas
 =====
 
