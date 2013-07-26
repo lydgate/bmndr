@@ -69,6 +69,12 @@ If you use [Taskwarrior](http://taskwarrior.org/projects/show/taskwarrior), you 
 
 This will upload your daily total tasks created __before__ 2013-07-17 to Beeminder. The reason I set a date was so that I could make progress on old tasks without being penalized for creating new tasks.
 
+You can also Beemind disk space usage on Linux pretty easily:
+
+    0 9 * * * bmndr disk $(df <list of partitions> | awk '{s+=$3} END {print s/1024/1024}}') automatic import from df
+
+This will upload the amount of diskspace used by the partitions you specify. This could be useful if you're trying to clear out space and want to Beemind it.
+
 Todo
 ====
 
