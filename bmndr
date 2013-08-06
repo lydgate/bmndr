@@ -93,8 +93,10 @@ else:
     post['auth_token'] = auth_token
     post['timestamp'] = round(time())
     post['value'] = argv[2]
-    if len(argv)>2:
+    if len(argv)>3:
         post['comment'] = ' '.join(argv[3:])
+    else:
+        post['comment'] = 'via bmndr at %s' % datetime.now().strftime('%X')
 
     params = urlencode(post)
     params = params.encode('utf-8')
