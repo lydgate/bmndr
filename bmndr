@@ -81,9 +81,12 @@ if len(argv) == 1:
 elif len(argv) == 2:
     goal = argv[1]
     data = loads(urlopen('https://www.beeminder.com/api/v1/users/me/goals/%s.json?auth_token=%s&datapoints=true' % (goal,auth_token)).read().decode('utf-8'))
-    print(''.join(('::: Progress on %s :::\n\n%s\nBare minimum: %s\n' % (data['title'],data['headsum'],data['limsum']),'\n'.join(wrap(data['graphsum'])),'\n\n%s\n' % data['graph_url'])))
-    for i in data['datapoints'][-10:]:
-        print(i['canonical'])
+    try:
+        print(''.join(('::: Progress on %s :::\n\n%s\nBare minimum: %s\n' % (data['title'],data['headsum'],data['limsum']),'\n'.join(wrap(data['graphsum'])),'\n\n%s\n' % data['graph_url'])))
+        for i in data['datapoints'][-10:]:
+            print(i['canonical'])
+    except KeyError:
+        print("Oops, there seems to be no goal named '%s'!" % (goal))
 
 # output for running "bmndr <goal> <data> <comment>"
 else:
