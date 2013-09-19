@@ -81,8 +81,6 @@ Todo
 * More configuration.
   * Make the number of goals displayed by default configurable.
   * Possibly make sorting configurable. It doesn't currently match Beeminder's own sorting.
-* Possibly allow monitoring other people's public graphs, if the API lets you do this.
 * Nicer formatting of the JSON that comes back when you submit data.
 * Silent switch for scripts when posting data.
 * Verbose switch for summary.
-* Switch to pop open the goal graph in an image viewer.
