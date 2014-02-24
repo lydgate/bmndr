@@ -80,7 +80,6 @@ Todo
 
 * More configuration.
   * Make the number of goals displayed by default configurable.
-  * Possibly make sorting configurable. It doesn't currently match Beeminder's own sorting.
 * Nicer formatting of the JSON that comes back when you submit data.
 * Silent switch for scripts when posting data.
 * Verbose switch for summary.
