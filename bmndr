@@ -37,10 +37,7 @@ def ConfigSectionMap(section):
 
 def time_to_days(dt):
     days = dt.days
-    if days == 1:
-        return '1 day'
-    else:
-        return '%s days' % days
+    return '%sd' % days
 
 try:
     auth_token = ConfigSectionMap('account')['auth_token']
@@ -68,12 +65,12 @@ if len(argv) == 1:
     for i in parsed:
         timeleft = datetime.fromtimestamp(int(i['losedate'])) - datetime.now()
         days = time_to_days(timeleft)
-        line = [i['slug'],days,i['headsum']]
+        line = ['$'+str(int(i['pledge'])),i['slug'],days,i['headsum']]
         output.append(line)
-    col_width = max([len(i[0]) for i in output]) + 1
+    col_width = max([len(i[1]) for i in output]) + 1
     for row in output:
         try:
-            print(''.join((row[0].ljust(col_width),row[1].ljust(9),row[2])))
+            print(''.join((row[0].ljust(4),row[1].ljust(col_width),row[2].ljust(5),row[3])))
         except TypeError:
             pass
 
