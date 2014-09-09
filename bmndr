@@ -89,7 +89,7 @@ elif len(argv) == 2:
         exit(1)
     data = loads(urlopen('https://www.beeminder.com/api/v1/users/me/goals/%s/datapoints.json?auth_token=%s' % (goal,auth_token)).read().decode('utf-8'))
     for i in data[:10]:
-        print(datetime.fromtimestamp(i['timestamp']).date(), i['comment'])
+        print(datetime.fromtimestamp(i['timestamp']).date(), i['value'], i['comment'])
 
 
 # output for running "bmndr <goal> <data> <comment>"
