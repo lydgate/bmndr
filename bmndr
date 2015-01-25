@@ -91,6 +91,14 @@ elif len(argv) == 2:
     for i in data[:10]:
         print(datetime.fromtimestamp(i['timestamp']).date(), i['value'], i['comment'])
 
+# output for running "bmndr refresh <goal>"
+elif len(argv) == 3 and argv[1] == "refresh":
+    goal = argv[2]
+    post = dict()
+    if loads(urlopen('https://www.beeminder.com/api/v1/users/me/goals/%s/refresh_graph.json?auth_token=%s' % (goal, auth_token)).read().decode('utf-8')):
+        print("OK")
+    else:
+        print("Failed")
 
 # output for running "bmndr <goal> <data> <comment>"
 else:
