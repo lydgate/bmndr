@@ -51,6 +51,10 @@ Enter a datapoint by adding further arguments after the slug. The format is the 
      'updated_at': 1374062062,
      'value': 1.0}
 
+You can also tell Beeminder to refresh a goal by using the following syntax:
+
+    $ bmndr refresh <slug>
+
 Configuration
 =============
 
